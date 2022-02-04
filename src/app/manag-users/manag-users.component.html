@@ -1,0 +1,101 @@
+<div class="manag-users">
+    <div class="title">
+        <h2>Управление пользователями</h2>
+    </div>
+    
+    <div class="main">
+        <!-----------------------------------------
+        -------------------------------------------
+        
+        Левая часть 
+        ------------------------------------------>
+        <div class="list-users">
+            <div class="list-users__top">
+                <p>Список пользователей системыge</p>
+                <button (click)="addUser()">Создать</button>
+            </div>
+            <div class="list-users__search">
+                <input type="text" #text (input)="searchUser(text.value)">
+            </div>
+
+            <div class="list-users__display">
+                <div 
+                *ngFor="let user of users; let i = index" 
+                (click)="userClick(i)" 
+                [class.removed]="user.removed" 
+                >
+                    <p>{{user.surname}} {{user.name}} {{user.patronymic}} ({{user.login}})</p>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-----------------------------------------
+        -------------------------------------------
+        
+        Правая часть 
+        ------------------------------------------>
+        <div class="info-user">
+            <div class="info-users__all">
+                <div class="info-users__top">
+                    <p class="info-user__status">{{userRemoved}}</p>
+                    <div class="ingo-user__btns">
+                        <button (click)="reset()">Отменить</button>
+                        <button (click)="deleteUser()">Удалить</button>
+                        <button [disabled]="!change" (click)="saveUser()">Сохранить</button>
+                    </div>
+
+                </div>
+                <div class="info-user__mid">
+                    <div class="info-user__login">
+                        <label>Логин</label>
+                        <input type="text" [(ngModel)]="login" (input)="changeUser()"> 
+                    </div>
+                    <div class="info-user__surname">
+                        <label>Фамилия</label>
+                        <input type="text" [(ngModel)]="surname" (input)="changeUser()">
+                    </div>
+                    <div class="info-user__name">
+                        <label>Имя</label>
+                        <input type="text" [(ngModel)]="name" (input)="changeUser()">
+                    </div>
+                    <div class="info-user__patronymic">
+                        <label>Отчество</label>
+                        <input type="text" [(ngModel)]="patronymic" (input)="changeUser()">
+                    </div>
+                    <div class="info-user__position">
+                        <label>Должность</label>
+                        <input type="text" [(ngModel)]="position" (input)="changeUser()">
+                    </div>
+                    <div class="info-user__password">
+                        <label>Пароль</label>
+                        <input type="password" [(ngModel)]="password" (input)="changeUser()">
+                    </div>
+                </div>
+                <div class="info-user__bottom">
+                    <button>Сменить пароль</button>
+                </div>
+            </div>
+            
+            <div class="info-user__roles">
+                <p>Роли</p>
+                <div>
+                    <input type="radio" name="role" value="admin" checked="checked">
+                    <label for="admin">Администратор</label>
+                    <br>
+                    <input type="radio" name="role" value="dispetcher">                    
+                    <label for="dispetcher">Диспетчер</label>
+                    <br>
+                    <input type="radio" name="role" value="supervisor">
+                    <label for="supervisor">Руководитель</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+
+
+</div>
